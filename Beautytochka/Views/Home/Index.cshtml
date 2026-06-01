@@ -1,0 +1,311 @@
+@{
+    ViewData["Title"] = "Главная";
+}
+
+<div class="text-center">
+
+    <!-- Главный баннер с фоном -->
+    <div class="main-banner text-center p-5 mx-auto" style="
+        max-width: 1300px;
+        border-radius: 20px;
+        box-shadow: 0 1px 10px rgba(0,0,0,0.1);
+        background-color: #F8F5F0;
+    ">
+
+        <h1 class="display-1 mb-3" style="color:#54140A; font-weight:600;">
+            Салон красоты Beauty&tochka
+        </h1>
+
+        <p class="display-6 mb-3" style="color:#2F1C1B; font-weight:500;">
+            Красота, уход и уверенность в себе каждый день
+        </p>
+
+        <p class="display-8 mb-5" style="color:#2F1C1B; font-weight:500;">
+            Салон красоты премиум-класса. Мы предлагаем широкий спектр услуг для вашей красоты и ухода за собой
+        </p>
+
+    </div>
+
+    <!-- Почему мы -->
+    <div class="my-5">
+        <p class="display-4 mb-4" id="why-us" style="color:#54140A; max-width:900px; margin:auto; font-weight:600;">
+            Почему выбирают нас?
+        </p>
+        <div id="whyCarousel" class="carousel slide mt-4" data-bs-ride="carousel">
+            <div class="carousel-inner">
+
+                <div class="carousel-item active">
+                    <div class="card carousel-card mx-auto">
+                        <div class="card-body">
+                            <h5>Профессиональные мастера</h5>
+                            <p>Наши специалисты имеют большой опыт и регулярно проходят обучение</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="carousel-item">
+                    <div class="card carousel-card mx-auto">
+                        <div class="card-body">
+                            <h5>Качественные материалы</h5>
+                            <p>Мы используем только профессиональные и безопасные средства</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="carousel-item">
+                    <div class="card carousel-card mx-auto">
+                        <div class="card-body">
+                            <h5>Комфортная атмосфера</h5>
+                            <p>Уютный интерьер, чистота и забота о каждом клиенте</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <button class="carousel-control-prev custom-carousel-btn" type="button" data-bs-target="#whyCarousel" data-bs-slide="prev">
+                <span class="custom-arrow">&lt;</span>
+            </button>
+
+            <button class="carousel-control-next custom-carousel-btn" type="button" data-bs-target="#whyCarousel" data-bs-slide="next">
+                <span class="custom-arrow">&gt;</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- Наши мастера -->
+    <div class="my-5">
+        <p class="display-4 mb-4" style="color:#54140A; max-width:900px; margin:auto; font-weight:600;">
+            Наши мастера
+        </p>
+        <div id="homeMastersCarousel" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner" id="home-masters-container">
+                <div class="carousel-item active">
+                    <p class="text-center">Загрузка мастеров...</p>
+                </div>
+            </div>
+            <button class="carousel-control-prev custom-carousel-btn" type="button" data-bs-target="#homeMastersCarousel" data-bs-slide="prev">
+                <span class="custom-arrow">&lt;</span>
+            </button>
+            <button class="carousel-control-next custom-carousel-btn" type="button" data-bs-target="#homeMastersCarousel" data-bs-slide="next">
+                <span class="custom-arrow">&gt;</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- Отзывы -->
+    <div class="my-5">
+        <p class="display-4 mb-3" style="color:#54140A; max-width:900px; margin:auto; font-weight:600;">
+            Отзывы наших клиентов
+        </p>
+        <div id="reviewsCarousel" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner" id="reviews-container">
+                <div class="carousel-item active">
+                    <p class="text-center">Загрузка отзывов...</p>
+                </div>
+            </div>
+            <button class="carousel-control-prev custom-carousel-btn" type="button" data-bs-target="#reviewsCarousel" data-bs-slide="prev">
+                <span class="custom-arrow">&lt;</span>
+            </button>
+            <button class="carousel-control-next custom-carousel-btn" type="button" data-bs-target="#reviewsCarousel" data-bs-slide="next">
+                <span class="custom-arrow">&gt;</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- Якорь для ссылки -->
+    <a id="recordForm"></a>
+
+    <!-- Форма записи -->
+    <form id="appointmentForm"
+          class="mx-auto p-4 mb-5"
+          style="max-width:60%; background-color:#2F1C1B; border-radius:30px; box-shadow: 0 1px 15px rgba(0,0,0,0.1);">
+
+        <p class="display-4 mb-4" style="color:white; font-weight:500;">
+            Запишитесь к нам на услугу
+        </p>
+
+        <div class="form-group mb-4">
+            <input class="form-control"
+                   id="UserName"
+                   name="UserName"
+                   placeholder="Введите имя"
+                   required
+                   style="padding:12px 20px; font-size:18px; border-radius:20px;" />
+        </div>
+
+        <div class="form-group mb-4">
+            <input class="form-control"
+                   id="Phone"
+                   name="Phone"
+                   placeholder="Введите номер телефона"
+                   required
+                   style="padding:12px 20px; font-size:18px; border-radius:20px;" />
+        </div>
+
+        <div class="form-group mb-4">
+            <select class="form-control"
+                    id="Service"
+                    name="Service"
+                    required
+                    style="padding:12px 20px; font-size:18px; border-radius:20px;">
+                <option disabled selected>Выберите услугу</option>
+                <option>Маникюр</option>
+                <option>Педикюр</option>
+                <option>Стрижки</option>
+                <option>Окрашивание волос</option>
+                <option>Ресницы</option>
+                <option>Брови</option>
+                <option>Депиляция</option>
+                <option>Косметология</option>
+            </select>
+        </div>
+
+        <div class="form-group mb-4">
+            <select class="form-control"
+                    id="Master"
+                    name="Master"
+                    required
+                    style="padding:12px 20px; font-size:18px; border-radius:20px;">
+                <option disabled selected>Выберите мастера</option>
+                <option>Анна Петрова</option>
+                <option>Мария Иванова</option>
+                <option>Екатерина Смирнова</option>
+                <option>Ольга Кузнецова</option>
+                <option>Кристина Волкова</option>
+                <option>Дарья Соколова</option>
+            </select>
+        </div>
+
+        <button type="submit"
+                class="btn w-100 footer-btn">
+            Записаться
+        </button>
+    </form>
+
+
+    <!-- Модальное окно -->
+    <div class="modal fade" id="thanksModal" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Спасибо за запись 💖</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    Мы получили вашу заявку.<br />
+                    Наш администратор свяжется с вами для подтверждения записи.
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn"
+                            style="background-color:#808080; color:#FFFBF3;"
+                            data-bs-dismiss="modal">
+                        Хорошо
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+@section Scripts {
+    <script>
+        async function loadHomeMasters() {
+            const container = document.getElementById('home-masters-container');
+            try {
+                const res = await fetch(`${API_URL}/api/masters`);
+                if (!res.ok) throw new Error('Ошибка загрузки мастеров');
+                const masters = await res.json();
+                if (!Array.isArray(masters) || masters.length === 0) {
+                    container.innerHTML = '<div class="carousel-item active"><p class="text-center">Мастера не найдены</p></div>';
+                    return;
+                }
+                // группируем по 3
+                const groups = [];
+                for (let i = 0; i < masters.length; i += 3) {
+                    groups.push(masters.slice(i, i + 3));
+                }
+                container.innerHTML = groups.map((group, idx) => `
+                    <div class="carousel-item ${idx === 0 ? 'active' : ''}">
+                        <div class="row g-4 justify-content-center">
+                            ${group.map(m => `
+                                <div class="col-md-4">
+                                    <div class="home-master-card text-center h-100 p-3">
+                                        <img src="${m.photoUrl || 'https://via.placeholder.com/400x500?text=No+Photo'}" alt="${m.fullName}" style="border-radius:20px; height:300px; object-fit:cover; width:100%;">
+                                        <h5 class="mt-3" style="font-weight:600; color:#54140A;">${m.fullName}</h5>
+                                        <p style="color:#BAAC9D;">${m.position}</p>
+                                    </div>
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>
+                `).join('');
+            } catch (e) {
+                console.error('Home masters error:', e);
+                container.innerHTML = `<div class="carousel-item active"><p class="text-center text-danger">Не удалось загрузить мастеров. Убедитесь, что API запущен на ${API_URL}</p></div>`;
+            }
+        }
+
+        async function loadReviews() {
+            const container = document.getElementById('reviews-container');
+            try {
+                const res = await fetch(`${API_URL}/api/reviews`);
+                if (!res.ok) throw new Error('Ошибка загрузки отзывов');
+                const reviews = await res.json();
+                if (!Array.isArray(reviews) || reviews.length === 0) {
+                    container.innerHTML = '<div class="carousel-item active"><p class="text-center">Пока нет отзывов. Будьте первым!</p></div>';
+                    return;
+                }
+                container.innerHTML = reviews.map((r, idx) => `
+                    <div class="carousel-item ${idx === 0 ? 'active' : ''}">
+                        <div class="carousel-card text-center mx-auto p-4" style="max-width:600px;">
+                            <h5 style="font-weight:600; color:#54140A;">${r.authorName}</h5>
+                            <p>"${r.text}"</p>
+                            <p><strong>Оценка:</strong> ${'⭐'.repeat(r.rating)}</p>
+                            <small class="text-muted">${new Date(r.createdAt).toLocaleDateString()}</small>
+                        </div>
+                    </div>
+                `).join('');
+            } catch (e) {
+                console.error('Reviews error:', e);
+                container.innerHTML = `<div class="carousel-item active"><p class="text-center text-danger">Не удалось загрузить отзывы</p></div>`;
+            }
+        }
+
+        document.getElementById("appointmentForm").addEventListener("submit", async function (e) {
+            e.preventDefault();
+
+            const data = {
+                clientName: document.getElementById("UserName").value,
+                phoneNumber: document.getElementById("Phone").value,
+                serviceName: document.getElementById("Service").value,
+                masterName: document.getElementById("Master").value,
+                comment: ""
+            };
+
+            try {
+                const response = await fetch(`${API_URL}/api/appointments`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(data)
+                });
+
+                if (response.ok) {
+                    localStorage.setItem('lastPhone', document.getElementById("Phone").value);
+                    this.reset();
+                    const modal = new bootstrap.Modal(document.getElementById('thanksModal'));
+                    modal.show();
+                } else {
+                    const err = await response.json();
+                    alert(err.message || "Ошибка при записи. Попробуйте еще раз.");
+                }
+            } catch {
+                alert("Ошибка при записи. Попробуйте еще раз.");
+            }
+        });
+
+        loadHomeMasters();
+        loadReviews();
+    </script>
+}

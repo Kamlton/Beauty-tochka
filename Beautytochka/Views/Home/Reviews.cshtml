@@ -1,0 +1,85 @@
+﻿@{
+    ViewData["Title"] = "Отзывы";
+}
+
+<h1 class="text-center my-5" style="color:#54140A; font-weight:600;">Отзывы наших клиентов</h1>
+
+<div class="container mb-5">
+    <div class="row g-4" id="reviews-container">
+        <p class="text-center">Загрузка...</p>
+    </div>
+</div>
+
+<div class="container" style="max-width: 600px;">
+    <h3 class="text-center mb-4" style="color:#54140A;">Оставить отзыв</h3>
+    <form id="reviewForm" class="p-4" style="background-color:#F8F5F0; border-radius:20px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
+        <div class="form-group mb-3">
+            <label>Ваше имя</label>
+            <input type="text" id="authorName" class="form-control" required style="border-radius:12px;" />
+        </div>
+        <div class="form-group mb-3">
+            <label>Текст отзыва</label>
+            <textarea id="reviewText" class="form-control" rows="3" required style="border-radius:12px;"></textarea>
+        </div>
+        <div class="form-group mb-4">
+            <label>Оценка (1-5)</label>
+            <input type="number" id="rating" class="form-control" min="1" max="5" value="5" required style="border-radius:12px;" />
+        </div>
+        <button type="submit" class="btn w-100 footer-btn">Отправить</button>
+    </form>
+</div>
+
+@section Scripts {
+    <script>
+        async function loadReviews() {
+            try {
+                const res = await fetch(`${API_URL}/api/reviews`);
+                if (!res.ok) throw new Error('Ошибка загрузки');
+                const reviews = await res.json();
+                const container = document.getElementById('reviews-container');
+                if (reviews.length === 0) {
+                    container.innerHTML = '<p class="text-center">Пока нет отзывов. Будьте первым!</p>';
+                    return;
+                }
+                container.innerHTML = reviews.map(r => `
+                    <div class="col-md-4">
+                        <div class="carousel-card text-center mx-auto h-100 p-4">
+                            <h5 style="font-weight:600;">${r.authorName}</h5>
+                            <p>"${r.text}"</p>
+                            <p><strong>Оценка:</strong> ${'⭐'.repeat(r.rating)}</p>
+                            <small class="text-muted">${new Date(r.createdAt).toLocaleDateString()}</small>
+                        </div>
+                    </div>
+                `).join('');
+            } catch (e) {
+                document.getElementById('reviews-container').innerHTML = `<p class="text-center text-danger">Ошибка: ${e.message}</p>`;
+            }
+        }
+
+        document.getElementById('reviewForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            const data = {
+                authorName: document.getElementById('authorName').value,
+                text: document.getElementById('reviewText').value,
+                rating: parseInt(document.getElementById('rating').value)
+            };
+            try {
+                const res = await fetch(`${API_URL}/api/reviews`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(data)
+                });
+                if (res.ok) {
+                    this.reset();
+                    loadReviews();
+                } else {
+                    alert('Ошибка при отправке отзыва');
+                }
+            } catch {
+                alert('Ошибка соединения с сервером');
+            }
+        });
+
+        loadReviews();
+    </script>
+}

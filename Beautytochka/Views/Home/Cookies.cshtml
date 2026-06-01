@@ -1,0 +1,64 @@
+﻿@{
+    ViewData["Title"] = "Ваши записи";
+}
+
+<h1 class="text-center my-5" style="color:#54140A; font-weight:600;">Ваши записи</h1>
+
+<div class="container" style="max-width: 600px;">
+    <div class="input-group mb-4">
+        <input type="text" id="phoneSearch" class="form-control" placeholder="Введите номер телефона" style="border-radius:12px 0 0 12px;" />
+        <button class="btn footer-btn" onclick="searchAppointments()" style="border-radius:0 12px 12px 0;">Найти</button>
+    </div>
+</div>
+
+<div class="container">
+    <div id="appointments-container">
+        <p class="text-center text-muted">Введите номер телефона для поиска записей</p>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        // Автозагрузка при наличии сохранённого телефона
+        document.addEventListener('DOMContentLoaded', function() {
+            const savedPhone = localStorage.getItem('lastPhone');
+            if (savedPhone) {
+                document.getElementById('phoneSearch').value = savedPhone;
+                searchAppointments();
+            }
+        });
+
+        async function searchAppointments() {
+            const phone = document.getElementById('phoneSearch').value.trim();
+            if (!phone) {
+                alert('Введите номер телефона');
+                return;
+            }
+            localStorage.setItem('lastPhone', phone);
+            try {
+                const res = await fetch(`${API_URL}/api/appointments/search?phone=${encodeURIComponent(phone)}`);
+                if (!res.ok) throw new Error('Ошибка загрузки');
+                const appointments = await res.json();
+                const container = document.getElementById('appointments-container');
+                if (appointments.length === 0) {
+                    container.innerHTML = '<p class="text-center">Записи не найдены</p>';
+                    return;
+                }
+                container.innerHTML = '<div class="row g-4">' + appointments.map(a => `
+                    <div class="col-md-6">
+                        <div class="carousel-card p-4">
+                            <h5>${a.serviceName}</h5>
+                            <p><strong>Мастер:</strong> ${a.masterName}</p>
+                            <p><strong>Имя:</strong> ${a.clientName}</p>
+                            <p><strong>Телефон:</strong> ${a.phoneNumber}</p>
+                            <p><strong>Статус:</strong> <span class="badge bg-${a.status === 0 ? 'info' : a.status === 1 ? 'success' : 'danger'}">${a.status === 0 ? 'Новая' : a.status === 1 ? 'Подтверждена' : 'Отклонена'}</span></p>
+                            <p class="text-muted"><small>${new Date(a.appointmentDate).toLocaleString()}</small></p>
+                        </div>
+                    </div>
+                `).join('') + '</div>';
+            } catch (e) {
+                document.getElementById('appointments-container').innerHTML = `<p class="text-center text-danger">Ошибка: ${e.message}</p>`;
+            }
+        }
+    </script>
+}

@@ -1,0 +1,142 @@
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: 60px;
+}
+
+.form-floating > .form-control-plaintext::placeholder, .form-floating > .form-control::placeholder {
+  color: var(--bs-secondary-color);
+  text-align: end;
+}
+
+.form-floating > .form-control-plaintext:focus::placeholder, .form-floating > .form-control:focus::placeholder {
+  text-align: start;
+}
+
+
+
+
+.custom-carousel-btn {
+    width: 48px;
+    height: 48px;
+    background-color: #808080;
+    border-radius: 50%;
+    opacity: 1;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.custom-carousel-btn:hover {
+    background-color: #272727;
+}
+
+.custom-arrow {
+    color: #FFFBF3;
+    font-size: 28px;
+    line-height: 48px;
+    text-align: center;
+}
+
+.master-img {
+    height: 500px; /* фиксированная высота карточки */
+    object-fit: cover; /* обрезает картинку по центру, заполняет контейнер */
+    width: 100%; /* ширина занимает всю карточку */
+}
+
+.carousel-caption h5,
+.carousel-caption p {
+    text-shadow: 1px 1px 4px rgba(0,0,0,0.7); /* чтобы текст был читаем на фото */
+    margin: 0;
+}
+
+.custom-carousel-btn {
+    background-color: #2F1C1B;
+    border: none;
+    border-radius: 40px;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease-in-out;
+    color: #FFFBF3; /* стрелки остаются светлыми */
+    box-shadow: none;
+}
+
+    .custom-carousel-btn:hover {
+        background-color: #54140A;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.3); /* небольшая тень */
+        cursor: pointer;
+    }
+
+.carousel-card {
+    max-width: 800px;
+    border-radius: 20px;
+    padding: 60px 30px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* легкая тень по умолчанию */
+    transition: all 0.3s ease-in-out;
+    background-color: white; /* светлый фон по умолчанию */
+    color: #000; /* текст черный по умолчанию */
+}
+
+    .carousel-card:hover {
+        background-color: #693027; /* темный цвет при наведении */
+        color: #fff; /* текст белый */
+        box-shadow: 0 8px 20px rgba(0,0,0,0.3); /* более заметная тень */
+    }
+
+.home-master-card {
+    border-radius: 20px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    transition: all 0.3s ease-in-out;
+    background-color: #F8F5F0;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+    .home-master-card:hover {
+        background-color: #693027;
+        color: #fff;
+        box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+    }
+
+    .home-master-card:hover h5,
+    .home-master-card:hover p {
+        color: #fff;
+    }
+
+/* Кнопки футера, как карточки */
+.footer-btn {
+    background-color: #F8F5F0; /* светлый фон */
+    color: #000;
+    border: none;
+    border-radius: 20px;
+    padding: 12px 28px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+    .footer-btn:hover {
+        background-color: #693027; /* темный при наведении */
+        color: #fff; /* текст белый */
+        box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+    }

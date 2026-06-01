@@ -1,0 +1,129 @@
+﻿@{
+    ViewData["Title"] = "Контакты";
+}
+
+<h1 class="text-center my-5" style="color:#54140A; font-weight:600;">
+    Контактная информация
+</h1>
+
+<div class="container">
+    <div class="row g-4">
+
+        <!-- Контактная информация -->
+        <div class="col-md-6">
+            <div class="carousel-card h-100 text-start p-4">
+                <p>
+                    <strong>Адрес:</strong><br />
+                    г. Казань, ул. Чатаева, д. 18а
+                </p>
+
+                <p>
+                    <strong>Телефон:</strong><br />
+                    <a href="tel:+79991234567">+7 (999) 123-45-67</a>
+                </p>
+
+                <p>
+                    <strong>Часы работы:</strong><br />
+                    Пн–Вс: 10:00 – 21:00
+                </p>
+
+                <p>
+                    <strong>Запись и вопросы:</strong><br />
+                    Напишите нам в удобной соцсети или заполните форму на сайте
+                </p>
+            </div>
+        </div>
+
+        <!-- Социальные сети -->
+        <div class="col-md-6">
+            <div class="carousel-card h-100 text-start p-4">
+                <h4 class="mb-3">Мы в социальных сетях</h4>
+
+                <ul class="list-unstyled fs-5">
+                    <li class="mb-2">
+                        <a href="https://instagram.com" target="_blank">Instagram</a>
+                    </li>
+                    <li class="mb-2">
+                        <a href="https://t.me" target="_blank">Telegram</a>
+                    </li>
+                    <li class="mb-2">
+                        <a href="https://vk.com" target="_blank">ВКонтакте</a>
+                    </li>
+                    <li class="mb-2">
+                        <a href="https://wa.me/79999999999" target="_blank">WhatsApp</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Карта -->
+        <div class="col-12">
+            <div class="map-card h-100 text-start p-3">
+                <h4 class="mb-3">Как нас найти</h4>
+
+                <div class="ratio" style="--bs-aspect-ratio: 40%;">
+                    <iframe src="https://yandex.ru/map-widget/v1/?ll=49.135380%2C55.820848&z=14&pt=49.135380,55.820848,pm2rdm"
+                            frameborder="0"
+                            allowfullscreen>
+                    </iframe>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<style>
+    /* Универсальный стиль для всех карточек на странице */
+    .carousel-card {
+        border-radius: 20px;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        transition: all 0.3s ease-in-out;
+        background-color: #F8F5F0; /* светлый фон по умолчанию */
+        color: #000;
+        cursor: pointer;
+    }
+
+        .carousel-card:hover {
+            background-color: #693027; /* темный цвет при наведении */
+            color: #fff;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.3); /* более заметная тень */
+        }
+
+        /* Ссылки внутри карточек меняют цвет при наведении */
+        .carousel-card a {
+            color: #54140A;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .carousel-card:hover a {
+            color: #F8F5F0;
+        }
+
+        /* Текст заголовков внутри карточек */
+        .carousel-card h4 {
+            color: #54140A;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+
+        .carousel-card:hover h4 {
+            color: #fff;
+        }
+
+    .map-card {
+        background-color: #F8F5F0; /* светлый фон по умолчанию */
+        border-radius: 20px; /* закругление углов */
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* легкая тень по умолчанию */
+        color: #000; /* цвет текста по умолчанию */
+        transition: all 0.3s ease-in-out;
+    }
+
+        .map-card:hover {
+            background-color: #693027; /* темный фон при наведении */
+            color: #fff; /* белый текст при наведении */
+            box-shadow: 0 8px 20px rgba(0,0,0,0.3); /* тень при наведении */
+        }
+
+</style>

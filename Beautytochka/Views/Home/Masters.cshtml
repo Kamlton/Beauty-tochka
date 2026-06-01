@@ -1,0 +1,110 @@
+@{
+    ViewData["Title"] = "Наши мастера";
+}
+
+<h1 class="text-center my-5" style="color:#54140A; font-weight:600;">
+    Наши мастера
+</h1>
+
+<div class="container">
+    <div class="row g-4" id="masters-container">
+        <p class="text-center">Загрузка...</p>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        async function loadMasters() {
+            const container = document.getElementById('masters-container');
+            try {
+                const res = await fetch(`${API_URL}/api/masters`);
+                if (!res.ok) throw new Error('Ошибка загрузки');
+                const masters = await res.json();
+                if (!Array.isArray(masters)) throw new Error('Неверный формат данных от API');
+                if (masters.length === 0) {
+                    container.innerHTML = '<p class="text-center">Мастера не найдены</p>';
+                    return;
+                }
+                container.innerHTML = masters.map((m) => {
+                    const photos = [m.photoUrl || 'https://via.placeholder.com/400x500?text=No+Photo'];
+                    if (m.workPhotos && Array.isArray(m.workPhotos) && m.workPhotos.length > 0) {
+                        photos.push(...m.workPhotos);
+                    }
+                    const carouselId = `carouselMaster${m.id}`;
+                    const slides = photos.map((url, idx) => `
+                        <div class="carousel-item ${idx === 0 ? 'active' : ''}">
+                            <img src="${url}" class="d-block w-100 master-img" alt="${m.fullName} - работа ${idx + 1}">
+                        </div>
+                    `).join('');
+
+                    return `
+                        <div class="col-md-4">
+                            <div class="carousel-card h-100 text-center overflow-hidden position-relative">
+                                <!-- Слайдер -->
+                                <div id="${carouselId}" class="carousel slide" data-bs-ride="carousel">
+                                    <div class="carousel-inner">
+                                        ${slides}
+                                    </div>
+
+                                    <!-- Кнопки слайдера -->
+                                    <button class="carousel-control-prev" type="button" data-bs-target="#${carouselId}" data-bs-slide="prev">
+                                        <span class="carousel-control-prev-icon"></span>
+                                    </button>
+                                    <button class="carousel-control-next" type="button" data-bs-target="#${carouselId}" data-bs-slide="next">
+                                        <span class="carousel-control-next-icon"></span>
+                                    </button>
+                                </div>
+
+                                <div class="p-3">
+                                    <h5 style="font-weight:600; color:#54140A;">${m.fullName}</h5>
+                                    <p style="color:#BAAC9D; font-weight:500;">${m.position}</p>
+                                    <p style="color:#BAAC9D;">${m.description || ''}</p>
+                                    <p><small>${m.phoneNumber}</small></p>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                }).join('');
+            } catch (e) {
+                console.error('Masters load error:', e);
+                container.innerHTML = `<p class="text-center text-danger">Ошибка: ${e.message}. Убедитесь, что API запущен на ${API_URL}</p>`;
+            }
+        }
+
+        loadMasters();
+    </script>
+}
+
+<style>
+    .carousel-card {
+        border-radius: 20px;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        transition: all 0.3s ease-in-out;
+        background-color: #F8F5F0;
+        overflow: hidden;
+        cursor: pointer;
+    }
+
+        .carousel-card:hover {
+            background-color: #693027;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+            color: #fff;
+        }
+
+        .carousel-card h5,
+        .carousel-card p {
+            transition: color 0.3s;
+        }
+
+        .carousel-card:hover h5,
+        .carousel-card:hover p {
+            color: #fff;
+        }
+
+        .carousel-card img {
+            border-radius: 20px 20px 0 0;
+            height: 350px;
+            object-fit: cover;
+            width: 100%;
+        }
+</style>

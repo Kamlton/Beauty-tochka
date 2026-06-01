@@ -1,0 +1,51 @@
+﻿@{
+    ViewData["Title"] = "Вход";
+}
+
+<h1 class="text-center my-5" style="color:#54140A; font-weight:600;">Вход в аккаунт</h1>
+
+<div class="container" style="max-width: 500px;">
+    <form id="loginForm" class="p-4" style="background-color:#F8F5F0; border-radius:20px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
+        <div class="form-group mb-3">
+            <label>Email</label>
+            <input type="email" id="email" class="form-control" required style="border-radius:12px;" />
+        </div>
+        <div class="form-group mb-4">
+            <label>Пароль</label>
+            <input type="password" id="password" class="form-control" required style="border-radius:12px;" />
+        </div>
+        <button type="submit" class="btn w-100 footer-btn">Войти</button>
+        <p class="text-center mt-3">
+            Нет аккаунта? <a href="/Home/Register">Зарегистрироваться</a>
+        </p>
+    </form>
+</div>
+
+@section Scripts {
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            const data = {
+                email: document.getElementById('email').value,
+                password: document.getElementById('password').value
+            };
+            try {
+                const res = await fetch(`${API_URL}/api/auth/login`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(data)
+                });
+                if (res.ok) {
+                    const result = await res.json();
+                    setToken(result.token);
+                    window.location.href = '/';
+                } else {
+                    const err = await res.json();
+                    alert(err.message || 'Неверный email или пароль');
+                }
+            } catch {
+                alert('Ошибка соединения с сервером');
+            }
+        });
+    </script>
+}

@@ -1,0 +1,105 @@
+﻿@{
+    ViewData["Title"] = "Услуги";
+}
+
+<h1 class="text-center my-5" style="color:#54140A; font-weight:600;">Наши услуги</h1>
+
+<div class="container">
+    <div class="row g-4">
+        <!-- Маникюр -->
+        <div class="col-md-6">
+            <a asp-controller="Home" asp-action="ServiceDetails" asp-route-service="Маникюр" class="text-decoration-none">
+                <div class="carousel-card text-center mx-auto h-100">
+                    <h5 class="card-title">Маникюр</h5>
+                </div>
+            </a>
+        </div>
+
+        <!-- Педикюр -->
+        <div class="col-md-6">
+            <a asp-controller="Home" asp-action="ServiceDetails" asp-route-service="Педикюр" class="text-decoration-none">
+                <div class="carousel-card text-center mx-auto h-100">
+                    <h5 class="card-title">Педикюр</h5>
+                </div>
+            </a>
+        </div>
+
+        <!-- Стрижки -->
+        <div class="col-md-3">
+            <a asp-controller="Home" asp-action="ServiceDetails" asp-route-service="Стрижки" class="text-decoration-none">
+                <div class="carousel-card text-center mx-auto h-100">
+                    <h5 class="card-title">Стрижки</h5>
+                </div>
+            </a>
+        </div>
+
+        <!-- Окрашивание волос -->
+        <div class="col-md-6">
+            <a asp-controller="Home" asp-action="ServiceDetails" asp-route-service="Окрашивание волос" class="text-decoration-none">
+                <div class="carousel-card text-center mx-auto h-100">
+                    <h5 class="card-title">Окрашивание волос</h5>
+                </div>
+            </a>
+        </div>
+
+        <!-- Ресницы -->
+        <div class="col-md-3">
+            <a asp-controller="Home" asp-action="ServiceDetails" asp-route-service="Ресницы" class="text-decoration-none">
+                <div class="carousel-card text-center mx-auto h-100">
+                    <h5 class="card-title">Ресницы</h5>
+                </div>
+            </a>
+        </div>
+
+        <!-- Брови -->
+        <div class="col-md-3">
+            <a asp-controller="Home" asp-action="ServiceDetails" asp-route-service="Брови" class="text-decoration-none">
+                <div class="carousel-card text-center mx-auto h-100">
+                    <h5 class="card-title">Брови</h5>
+                </div>
+            </a>
+        </div>
+
+        <!-- Депиляция -->
+        <div class="col-md-3">
+            <a asp-controller="Home" asp-action="ServiceDetails" asp-route-service="Депиляция" class="text-decoration-none">
+                <div class="carousel-card text-center mx-auto h-100">
+                    <h5 class="card-title">Депиляция</h5>
+                </div>
+            </a>
+        </div>
+
+        <!-- Косметология -->
+        <div class="col-md-6">
+            <a asp-controller="Home" asp-action="ServiceDetails" asp-route-service="Косметология" class="text-decoration-none">
+                <div class="carousel-card text-center mx-auto h-100">
+                    <h5 class="card-title">Косметология</h5>
+                </div>
+            </a>
+        </div>
+    </div>
+</div>
+
+<style>
+    .carousel-card {
+        max-width: 800px;
+        border-radius: 20px;
+        padding: 60px 30px;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* легкая тень */
+        transition: all 0.3s ease-in-out;
+        background-color: #F8F5F0; /* светлый фон */
+        color: #000; /* текст черный */
+        cursor: pointer;
+    }
+
+        .carousel-card:hover {
+            background-color: #693027; /* темный при наведении */
+            color: #fff; /* текст белый */
+            box-shadow: 0 8px 20px rgba(0,0,0,0.3); /* тень при наведении */
+        }
+
+        .carousel-card h5 {
+            font-weight: 600;
+            font-size: 1.5rem;
+        }
+</style>

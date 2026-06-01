@@ -1,0 +1,73 @@
+﻿@{
+    ViewData["Title"] = ViewData["ServiceName"];
+}
+
+<h1 class="text-center my-5" style="color:#54140A; font-weight:600;">
+    Полный список вариантов для услуги: <strong id="category-name">@ViewData["ServiceName"]</strong>
+</h1>
+
+<div class="container mt-4">
+    <div class="row g-4" id="services-container">
+        <p class="text-center">Загрузка...</p>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        const category = document.getElementById('category-name').textContent;
+
+        async function loadServices() {
+            try {
+                const res = await fetch(`${API_URL}/api/services/categories/${encodeURIComponent(category)}`);
+                if (!res.ok) throw new Error('Ошибка загрузки');
+                const services = await res.json();
+                const container = document.getElementById('services-container');
+                if (services.length === 0) {
+                    container.innerHTML = '<p class="text-center">Услуги не найдены</p>';
+                    return;
+                }
+                container.innerHTML = services.map(s => `
+                    <div class="col-md-4">
+                        <div class="carousel-card h-100 text-center mx-auto">
+                            <h5 style="font-weight:600; font-size:1.5rem;">${s.name}</h5>
+                            <p>${s.description || ''}</p>
+                            <p><strong>Время:</strong> ${s.duration}</p>
+                            <p><strong>Стоимость:</strong> ${s.price}</p>
+                        </div>
+                    </div>
+                `).join('');
+            } catch (e) {
+                document.getElementById('services-container').innerHTML = `<p class="text-center text-danger">Ошибка: ${e.message}</p>`;
+            }
+        }
+
+        loadServices();
+    </script>
+}
+
+<style>
+    .carousel-card {
+        max-width: 800px;
+        border-radius: 20px;
+        padding: 40px 20px;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* легкая тень */
+        transition: all 0.3s ease-in-out;
+        background-color: #F8F5F0; /* светлый фон */
+        color: #000; /* текст черный */
+        cursor: pointer;
+    }
+
+        .carousel-card:hover {
+            background-color: #693027; /* темный при наведении */
+            color: #fff; /* текст белый */
+            box-shadow: 0 8px 20px rgba(0,0,0,0.3); /* более заметная тень */
+        }
+
+        .carousel-card h5 {
+            margin-bottom: 15px;
+        }
+
+        .carousel-card p {
+            margin-bottom: 10px;
+        }
+</style>
